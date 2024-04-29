@@ -74,4 +74,6 @@ def calculate(param):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    import uvicorn
+
+    uvicorn.run(app, host="0.0.0.0", port=41181)
