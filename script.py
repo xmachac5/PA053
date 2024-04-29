@@ -1,8 +1,6 @@
 from flask import Flask, request, Response
-from flask_vercel import Vercel
 
 app = Flask(__name__)
-vercel = Vercel(app)
 
 
 @app.route("/")
@@ -34,7 +32,7 @@ def query():
 
 def get_temperature(iata_code):
     url = f"http://api.weatherapi.com/v1/current.json?key=d6fe5f8a364a4d9bafe121634242904&q=iata:{iata_code}"
-    response = requests.get(url)
+    response = request.get(url)
     if response.status_code == 200:
         data = response.json()
         temperature = data['current']['temp_c']
@@ -56,7 +54,7 @@ def stock_price(param):
         'x-rapidapi-host': 'apidojo-yahoo-finance-v1.p.rapidapi.com'
     }
     url = f"https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-summary?symbol={param}"
-    response = requests.get(url, headers=headers)
+    response = request.get(url, headers=headers)
 
     if response.status_code == 200:
         data = response.json()
