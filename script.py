@@ -1,7 +1,8 @@
-import requests
 from flask import Flask, request, Response
+from flask_vercel import Vercel
 
 app = Flask(__name__)
+vercel = Vercel(app)
 
 
 @app.route("/")
@@ -73,4 +74,4 @@ def calculate(param):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=41181, debug=True)
+    app.run(debug=True)
